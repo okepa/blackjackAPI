@@ -25,7 +25,8 @@ static createUser(req,res){
         if(err) return res.status(500).send(err);
     
         // redirect the user to a GET route. We'll go back to the INDEX.
-        res.redirect("/");
+        // res.redirect("/");
+        res.send();
     
     });
 

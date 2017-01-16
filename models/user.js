@@ -23,15 +23,18 @@ let UserSchema = mongoose.Schema({
     dob: {
         type: Date,
         require: true,
-        validate: [dateValidator, 'Start Date must be less than End Date']
+        validate: [dateValidator, 'You must be over 18']
     }
 });
 
 
-// function that validate the startDate and endDate
-function dateValidator(value) {
-  // `this` is the mongoose document
-  return this.dob <= value;
+// function that validates the dob - checks user is over 18
+function dateValidator(dob) {
+    let years = moment().diff(dob, 'years');
+    return years;
+    // if (years < '18') {
+        
+    // }
 }
 
 module.exports = mongoose.model("User", UserSchema);
