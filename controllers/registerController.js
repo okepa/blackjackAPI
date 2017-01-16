@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const hash = require("password-hash");
+const moment = require("moment");
 
 class RegisterController {
 
@@ -23,10 +24,11 @@ class RegisterController {
 
     static createUser(req, res) {
         console.log(req.body.password);
-        req.body.dob = new Date(req.body.dob);
+        console.log(req.body.dob);
+        // req.body.dob = new Date(req.body.dob);
+        req.body.dob = moment(req.body.dob).format("DD/MM/YYYY");
         req.body.password = hash.generate(req.body.password);
         User.create(req.body, function (err, user) {
-
             // check for errors and return 500 if there was a problem
             if (err) return res.status(500).send(err);
 
