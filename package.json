@@ -8,6 +8,7 @@
     "body-parser": "^1.15.2",
     "ejs": "^2.5.5",
     "express": "^4.14.0",
+    "moment": "^2.17.1",
     "mongodb": "^2.2.21",
     "mongoose": "^4.7.7",
     "password-hash": "^1.2.2"
