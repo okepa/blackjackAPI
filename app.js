@@ -1,10 +1,12 @@
 require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
-
 const routes = require("./routes/routes");
-
 const app = express();
+const mongoose = require('mongoose');
+
+//connecting to DB 
+mongoose.connect(process.env.DB);
 
 //View Engine
 app.set('view engine' , 'ejs');

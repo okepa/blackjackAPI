@@ -3,7 +3,7 @@ const mailer = require("../lib/email");
 class RegisterController {
     static sendContactRequest(req, res){
         try {
-            const contactRequest = new Contact(req.body);
+            const contactRequest = new Email(req.body);
             mailer.sendEmail(contactRequest)
              .then(() => {
                  console.log ("It worked!");
@@ -21,4 +21,4 @@ class RegisterController {
     }
 }
 
-module.exports = ContactController;
+module.exports = RegisterController;
