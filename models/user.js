@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const moment = require("moment");
 
-
+//create user schema
 let UserSchema = mongoose.Schema({
     fullName: {
         type: String,
@@ -31,11 +31,14 @@ let UserSchema = mongoose.Schema({
                     return false;
                 } else {
                     console.log(years);
-                    // none were found, you passed!
+
                     return true;
                 }
             },
         }
+    },
+    token: {
+        type: String,
     }
 });
 

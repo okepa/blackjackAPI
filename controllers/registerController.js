@@ -20,9 +20,8 @@ class RegisterController {
     static makeUser(req, res) {
         Registration.createUser(req)
             .then((result) => {
-                // result = req.body.dob;
-                res.status(200).send({
-                    // result: result
+                res.status(201).send({
+                    success: "user has been created"
                 })
             })
             .catch((err) => {
