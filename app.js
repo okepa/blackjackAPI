@@ -1,9 +1,13 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongodb = require("mongodb");
+const mongoose = require("mongoose");
 
 const routes = require("./routes/routes");
 
 const app = express();
+
+mongoose.connect("mongodb://localhost/blackjackApi");
 
 //View Engine
 app.set('view engine' , 'ejs');
