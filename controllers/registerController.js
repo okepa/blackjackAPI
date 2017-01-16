@@ -26,7 +26,7 @@ class RegisterController {
         console.log(req.body.password);
         console.log(req.body.dob);
         // req.body.dob = new Date(req.body.dob);
-        req.body.dob = moment(req.body.dob).format("DD/MM/YYYY");
+        req.body.dob = moment(req.body.dob).format("YYYY/MM/DD");
         req.body.password = hash.generate(req.body.password);
         User.create(req.body, function (err, user) {
             // check for errors and return 500 if there was a problem
