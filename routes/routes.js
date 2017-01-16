@@ -6,7 +6,7 @@ const registerController = require("../controllers/registerController");
 router.get("/", indexController.showIndex);
 
 router.route("/register")
-    .get(registerController.newUser)
-    .post(registerController.createUser);
+    .get(registerController.initUser)
+    .post(registerController.makeUser);
 
 module.exports = router;
