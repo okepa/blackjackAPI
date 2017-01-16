@@ -28,9 +28,9 @@ let UserSchema = mongoose.Schema({
 });
 
 
-// function that validates the dob - checks user is over 18
+// function that validates the dob - checks if user is over 18
 function dateValidator(dob) {
-    let years = moment().diff(dob, 'years');
+    let years = moment().diff(moment(dob), 'years');
     return years;
     // if (years < '18') {
         
