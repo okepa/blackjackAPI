@@ -6,6 +6,6 @@ const accountValidationController = require("../controllers/accountValidationCon
 
 router.get("/", indexController.showIndex);
 
-route.get("/accountValidation", accountValidationController.)
+router.get("/accountValidation", accountValidationController.accountValidationRequest);
 
 module.exports = router;

@@ -4,12 +4,13 @@ const bodyParser = require("body-parser");
 const routes = require("./routes/routes");
 const app = express();
 const mongoose = require('mongoose');
+const jwt = require("jsonwebtoken");
 
 //connecting to DB 
 mongoose.connect(process.env.DB);
 
 //View Engine
-app.set('view engine' , 'ejs');
+app.set('view engine', 'ejs');
 
 //Middleware
 app.use(bodyParser.json());
@@ -19,4 +20,12 @@ app.use(routes);
 
 app.listen(process.env.PORT || 3000, () => {
     console.log(`Server listening on port ${process.env.PORT || 3000}`);
+
+    // let testObj = {};
+    // let token = jwt.sign(testObj, "blackjack", {
+    //     expiresIn: "12h"
+    // });
+    // console.log(token);
+
+    // let urlString = `${process.env.URL}/accountValidation?${token}`;
 });

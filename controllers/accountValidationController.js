@@ -1,10 +1,14 @@
-const User = require('../models/accountValidation');
-
+const accountValidation = require('../lib/accountValidation');
+const User = require('../models/user');
+//Here I need to get the token from the route and send it to the lib file
 class accountValidationController {
-    static emailValidationRequest(req, res){
-        try {
-            //const contactRequest = new Email(req.body);
-            
+    static accountValidationRequest(req, res){
+        try { 
+            accountValidation.checkValidation(token)
+            .then(() => {
+                 console.log ("It worked!");
+                res.redirect("/");
+            })
         } catch (err){
 
         }
@@ -12,4 +16,4 @@ class accountValidationController {
     }
 }
 
-module.exports = RegisterController;
+module.exports = accountValidationController;
