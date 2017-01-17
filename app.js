@@ -20,12 +20,4 @@ app.use(routes);
 
 app.listen(process.env.PORT || 3000, () => {
     console.log(`Server listening on port ${process.env.PORT || 3000}`);
-
-    // let testObj = {};
-    // let token = jwt.sign(testObj, "blackjack", {
-    //     expiresIn: "12h"
-    // });
-    // console.log(token);
-
-    // let urlString = `${process.env.URL}/accountValidation?${token}`;
 });

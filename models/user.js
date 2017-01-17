@@ -38,7 +38,8 @@ let UserSchema = mongoose.Schema({
         }
     },
     access: {
-        type: Boolean
+        type: Boolean,
+        defeult: false
     }
 });
 
