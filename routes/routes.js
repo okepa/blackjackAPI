@@ -3,6 +3,7 @@ const router = express.Router();
 const indexController = require("../controllers/indexController");
 const LoginController = require("../controllers/loginController");
 const registerController = require("../controllers/registerController");
+const accountController = require("../controllers/accountController");
 
 //gets the indexController
 router.route("/")
@@ -15,5 +16,9 @@ router.route("/register")
 
 router.route("/login")
     .post(LoginController.login);
+
+router.route("/account")
+    .get(accountController.showAcDetails);
+
     
 module.exports = router;
