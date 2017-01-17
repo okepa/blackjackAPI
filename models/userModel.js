@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+//create user schema
 let UserSchema = mongoose.Schema({
     fullName: {
         type: String,
@@ -20,7 +21,23 @@ let UserSchema = mongoose.Schema({
     },
     dob: {
         type: Date,
-        require: true
+        require: true,
+        validate: {
+            validator: function (value) {
+                let years = moment().diff(moment(value), 'years');
+                if (years < 18) {
+                    console.log(years);
+                    return false;
+                } else {
+                    console.log(years);
+
+                    return true;
+                }
+            },
+        }
+    },
+    token: {
+        type: String,
     }
 });
 

@@ -1,6 +1,3 @@
-// const user = require("../models/userModel");
-// const hash = require("password-hash");
-// const jwt = require("jsonwebtoken");
 const loginLib = require("../lib/loginLib");
 
 class LoginController {
@@ -17,7 +14,7 @@ class LoginController {
         //call login function in lib folder with para of req.body.username
         loginLib.loginUser(req).then(result => {
             res.status(200).send({
-                success: { result: result }
+                token: { token: result }
             })
         })
         .catch(err=>{

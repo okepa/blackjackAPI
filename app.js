@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const mongodb = require("mongodb");
 const mongoose = require("mongoose");
 const routes = require("./routes/routes");
 
@@ -14,7 +15,6 @@ mongoose.connect("mongodb://localhost/blackjackApi");
 //Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(mongoose);
 app.use(express.static('public'));
 app.use(routes);
 
