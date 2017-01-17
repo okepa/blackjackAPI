@@ -10,18 +10,17 @@
   "description": "",
   "dependencies": {
     "body-parser": "^1.15.2",
-    "moment": "^2.17.1",
-    "mongodb": "^2.2.21",
-    "mongoose": "^4.7.7",
-    "password-hash": "^1.2.2",
     "chai": "^3.5.0",
+    "dotenv": "^4.0.0",
     "ejs": "^2.5.5",
     "ejs-layouts": "0.0.1",
     "express": "^4.14.0",
     "jsonwebtoken": "^7.2.1",
     "mocha": "^3.2.0",
+    "moment": "^2.17.1",
     "mongo": "^0.1.0",
-    "node": "0.0.0",
-    "nodemon": "^1.11.0"
+    "mongodb": "^2.2.21",
+    "mongoose": "^4.7.7",
+    "password-hash": "^1.2.2"
   }
 }
