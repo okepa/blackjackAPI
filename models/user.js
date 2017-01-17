@@ -24,6 +24,8 @@ let UserSchema = mongoose.Schema({
         type: Date,
         require: true,
         validate: {
+            //a validation function that uses moment to find the diff in years (value)
+            //checks to see if a users is older than 18
             validator: function (value) {
                 let years = moment().diff(moment(value), 'years');
                 if (years < 18) {
