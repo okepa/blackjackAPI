@@ -12,6 +12,6 @@ router.route("/register")
 router.route("/accountvalidation/:userid/:token")
     .get(accountValidationController.accountValidationRequest)
 
-    //http://blackjack.herokuapp.com/userID/token
+//http://blackjack.herokuapp.com/accountvalidation/userID/token
 
 module.exports = router;

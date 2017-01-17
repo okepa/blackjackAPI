@@ -1,23 +1,19 @@
-const mailer = require("../lib/email");
+const email = require("../lib/email");
 
 class RegisterController {
-    static sendContactRequest(req, res){
-        try {
-            const contactRequest = new Email(req.body);
-            mailer.sendEmail(contactRequest)
-             .then(() => {
-                 console.log ("It worked!");
-                res.redirect("/");
+    static sendContactRequest(req, res) {
+        //const contactRequest = new Email(req.body);
+        email.sendEmail(req.body)
+            .then(() => {
+                res.status(200).send({
+                    success: "Email has been sent"
+                })
+                //res.redirect("/login");
             })
             .catch(error => {
-                console.log(`It didnt work becaue %{erorr}`);
-                res.redirect("/");
+                res.status(400).send(err.message);
+                //res.redirect("/login");
             });
-        } catch (err){
-            console.log(err);
-            res.redirect("/");
-        }
-
     }
 }
 

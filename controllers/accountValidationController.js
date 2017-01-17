@@ -28,5 +28,3 @@ class accountValidationController {
     }
 }
 module.exports = accountValidationController;
-
-//http://blackjack.herokuapp.com/userID/token
