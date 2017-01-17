@@ -6,28 +6,31 @@ let UserSchema = mongoose.Schema({
     fullName: {
         type: String,
         required: true
+        // validate: nodemvd.$notEmpty({ msg: 'Please enter your full name.' })
     },
     email: {
         type: String,
         required: true,
         unique: true,
         validate: {
-            validator: function (email)   {
+            validator: function (email) {
                 let re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
                 return re.test(email)
             }
 
-          }
+        }
     },
     username: {
         type: String,
         required: true,
-        unique: true,
+        unique: true
     },
-    
+
     password: {
         type: String,
-        required: true
+        required: true,
+        
+
     },
     dob: {
         type: Date,
@@ -50,6 +53,10 @@ let UserSchema = mongoose.Schema({
     },
     token: {
         type: String,
+    },
+    access: {
+        type: Boolean,
+        default: false
     }
 });
 
