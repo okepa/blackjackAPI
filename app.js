@@ -2,7 +2,6 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongodb = require("mongodb");
 const mongoose = require("mongoose");
-
 const routes = require("./routes/routes");
 
 //Connecting to the mongoose database blackjackApi
