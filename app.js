@@ -1,16 +1,17 @@
 require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
-const mongodb = require("mongodb");
-const mongoose = require("mongoose");
 const routes = require("./routes/routes");
-const app = module.exports = express();
+const app = express();
+const mongoose = require('mongoose');
+const jwt = require("jsonwebtoken");
+const mongodb = require("mongodb");
 
-//Connecting to the mongoose database blackjackApi
+//connecting to DB 
 mongoose.connect(process.env.DB);
 
 //View Engine
-app.set('view engine' ,'ejs');
+app.set('view engine', 'ejs');
 
 //Middleware
 app.use(bodyParser.json());
