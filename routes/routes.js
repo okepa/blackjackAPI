@@ -16,14 +16,13 @@ router.route("/register")
     .post(registerController.makeUser);
 
 router.route("/register")
-    .post(registerController.sendEmailRequest)
+    .post(registerController.sendEmailRequest);
 
 router.route("/login")
     .post(LoginController.login);
 
 router.route("/account/:id")
     .get(accountController.showAccDetails);
-
 
 router.route("/accountvalidation")
     .post(accountValidationController.accountValidationRequest)
