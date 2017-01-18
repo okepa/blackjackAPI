@@ -29,6 +29,7 @@ let UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
+        unique: true
         
 
     },
@@ -57,6 +58,12 @@ let UserSchema = mongoose.Schema({
     access: {
         type: Boolean,
         default: false
+    },
+
+    balance:{
+        type: Number,
+        default: 0
+
     }
 });
 
