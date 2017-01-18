@@ -7,7 +7,7 @@ const routes = require("./routes/routes");
 const app = module.exports = express();
 
 //Connecting to the mongoose database blackjackApi
-mongoose.connect('mongodb://heroku_jkkpjdg2:mdrt9qlchrdfva54jvn9stbau1@ds011422.mlab.com:11422/heroku_jkkpjdg2');
+mongoose.connect(process.env.DB);
 
 //View Engine
 app.set('view engine' ,'ejs');
@@ -18,7 +18,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 app.use(routes);
 
-//Listening on PORT 3000
 app.listen(process.env.PORT || 3000, () => {
     console.log(`Server listening on port ${process.env.PORT || 3000}`);
 });

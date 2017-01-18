@@ -4,6 +4,10 @@ const indexController = require("../controllers/indexController");
 const LoginController = require("../controllers/loginController");
 const registerController = require("../controllers/registerController");
 const accountController = require("../controllers/accountController");
+<<<<<<< HEAD
+=======
+const accountValidationController = require("../controllers/accountValidationController");
+>>>>>>> master
 
 //gets the indexController
 router.route("/")
@@ -14,10 +18,20 @@ router.route("/register")
     .get(registerController.initUser)
     .post(registerController.makeUser);
 
+router.route("/register")
+    .post(registerController.sendEmailRequest);
+
 router.route("/login")
     .post(LoginController.login);
 
 router.route("/account/:id")
     .get(accountController.showAccDetails);
+<<<<<<< HEAD
     
+=======
+
+router.route("/accountvalidation")
+    .post(accountValidationController.accountValidationRequest)
+
+>>>>>>> master
 module.exports = router;
