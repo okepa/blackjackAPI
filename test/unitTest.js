@@ -8,7 +8,6 @@ const User = require('../models/user');
 const loginLib = require('../lib/loginLib');
 const registerLib = require('../lib/register');
 
-
 /** 
  *  UNIT TEST - demo-SUCCESS
  **/
@@ -21,101 +20,37 @@ describe("demo-SUCCESS", (done) => {
         password: "hello",
         dob: new Date("1994-08-30")
     };
-    // cretes a user object using dummy data
-    it("creates a user object", (done) => {
+
+    it("if data is valid then the object should be saved to the database", (done) => {
+        expect(userData.fullName).to.be.an("string"),
+            expect(userData.username).to.be.an("string"),
+            expect(userData.email).to.be.an("string"),
+            expect(userData.password).to.be.an("string"),
+            expect(userData.dob).to.be.an("Date");
         User.create({ userData })
-        assert.isObject(userData, "its alive")
-        done();
-    })
-    // tests that the field accepts only string values
-    it("should expect the field to be a string", (done) => {
-        expect(userData.fullName).to.be.an("string");
-        done();
-    })
-    // tests that the field accepts only date-formated values
-    it("should expect the field to be a Date", (done) => {
-        expect(userData.dob).to.be.an("Date");
         done();
     })
 })
-
 
 /** 
  *  UNIT TEST - demo-FAILURE
  **/
 describe("demo-FAILURE", (done) => {
-    // dummy data
     let userData = {
-        fullName: 12345,
-        email: 1231,
-        username: 987,
-        password: 12312,
-        dob: "1994/08/30"
+        fullName: 12 < 12,
+        email: 1 & 2,
+        username: 12345,
+        password: 123,
+        dob: new Date("1993-08-30")
     };
-    
-    it("shouldn't save in the database", (done) => {
-        let errorUserData = {};
-        User.create({ errorUserData })
-        expect(errorUserData).to.be.empty;
-        done();
-    })
 
-    it("should only accepts string", (done) => {
-        expect(userData.fullName).not.to.be.an("string");
-        done();
-    })
-    it("should only accepts Date", (done) => {
-        expect(userData.dob).not.to.be.an("Date");
+    it("if data is invalid it should not save to the database", (done) => {
+        expect(userData.fullName).to.be.an("string"),
+            expect(userData.username).to.be.an("string"),
+            expect(userData.email).to.be.an("string"),
+            expect(userData.password).to.be.an("string"),
+            expect(userData.dob).to.be.an("Date");
+        User.create({ userData })
         done();
     })
 })
-
-
-
-// /** 3). 
-//  *  UNIT TEST - functions
-//  *  
-//  **/
-// describe("demo-functions-register", (done) => {
-//     let userData = {
-//         fullName: "Josh Bello",
-//         email: "joshbello@gmail.com",
-//         username: "joshbello",
-//         password: "joshbello",
-//         dob: new Date("1994-08-30")
-//     };
-//     it(" should register a user", (done) => {
-
-//         registerLib.createUser(userData)
-//             .then(result => {
-//                 console.log(result);
-//                 result.should.not.be.empty;
-//                 done();
-//             })
-//             .catch(err => {
-//                 console.log(err.message);
-//                 done();
-//             });
-//     });
-
-
-//     describe("demo-functions-login", (done) => {
-//         let test = {
-//             username: "joshbello ",
-//             password: "joshbello"
-//         };
-//         it("should log in", (done) => {
-
-//             loginLib.loginUser(test)
-//                 .then(result => {
-//                     console.log("HERE I AM ", result);
-//                     should.not.exist();
-//                     result.should.be.an("Object");
-//                 })
-//                 .catch(err => {
-//                     console.log(err.message);
-//                     done();
-//                 })
-//         });
-//     });
-// });
