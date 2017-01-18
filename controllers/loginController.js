@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const hash = require("password-hash");
-const login = require("../lib/login");
+const loginLib = require("../lib/loginLib");
 
 class LoginController {
     /**
@@ -14,7 +14,7 @@ class LoginController {
     static login(req, res) {
         //console.log(req.body.username);
         //call login function in lib folder with para of req.body.username
-        login.loginUser(req).then(result => {
+        loginLib.loginUser(req).then(result => {
             res.status(200).send({
                 token: { token: result }
             })
