@@ -16,7 +16,7 @@ class LoginController {
         //call login function in lib folder with para of req.body.username
         loginLib.loginUser(req).then(result => {
             res.status(200).send({
-                token: { token: result }
+                success: { token: result.token, id:result.id }
             })
         })
         .catch(err=>{
