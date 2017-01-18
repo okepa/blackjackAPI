@@ -20,30 +20,19 @@ class RegisterController {
     //handles the createUser in the register.js
     static makeUser(req, res) {
         Registration.createUser(req)
-            .then((result) => {
-                res.status(201).send({
-                    success: "user has been created"
-                })
+            .then(() => {
+                email.sendEmail(req.body)
+                    .then(() => {
+                        res.status(201).send({
+                            success: "Email has been sent & User has been created"
+                        })
+                    })
+                    .catch(err => {
+                        res.status(400).send(err.message);
+                    });
             })
-            .catch(err => {
-                res.status(400).send(err.message);
-            });
     }
 
-    static sendEmailRequest(req, res) {
-        //const contactRequest = new Email(req.body);
-        email.sendEmail(req.body)
-            .then(() => {
-                res.status(200).send({
-                    success: "Email has been sent"
-                })
-                //res.redirect("/login");
-            })
-            .catch(error => {
-                res.status(400).send(err.message);
-                //res.redirect("/login");
-            });
-    }
 }
 
 module.exports = RegisterController;

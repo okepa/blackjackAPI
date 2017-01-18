@@ -18,8 +18,8 @@ router.route("/register")
     .get(registerController.initUser)
     .post(registerController.makeUser);
 
-router.route("/register")
-    .post(registerController.sendEmailRequest);
+// router.route("/register")
+//     .post(registerController.sendEmailRequest);
 
 router.route("/login")
     .post(LoginController.login);
