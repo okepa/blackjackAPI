@@ -30,7 +30,6 @@ class RegisterController {
             });
     }
 
-
     static sendEmailRequest(req, res) {
         //const contactRequest = new Email(req.body);
         email.sendEmail(req.body)
@@ -43,7 +42,6 @@ class RegisterController {
             .catch(error => {
                 res.status(400).send(err.message);
                 //res.redirect("/login");
-
             });
     }
 }
