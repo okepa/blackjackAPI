@@ -26,12 +26,10 @@ router.route("/login")
 
 router.route("/account/:id")
     .get(accountController.showAccDetails);
-<<<<<<< HEAD
     
-=======
-
 router.route("/accountvalidation")
     .post(accountValidationController.accountValidationRequest)
 
->>>>>>> master
+
+
 module.exports = router;

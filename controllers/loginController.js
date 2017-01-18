@@ -16,13 +16,13 @@ class LoginController {
         //call login function in lib folder with para of req.body.username
         loginLib.loginUser(req).then(result => {
             res.status(200).send({
-                success: { token: result.token, id:result.id }
+                success: { token: result.token, id: result.id }
             })
         })
-        .catch(err=>{
+            .catch(err => {
                 console.log(err);
                 res.status(401).send(err);
-        })
+            })
 
     }
 }
