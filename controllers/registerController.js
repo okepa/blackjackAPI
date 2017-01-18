@@ -1,7 +1,7 @@
 const email = require("../lib/email");
 
 class RegisterController {
-    static sendContactRequest(req, res) {
+    static sendEmailRequest(req, res) {
         //const contactRequest = new Email(req.body);
         email.sendEmail(req.body)
             .then(() => {

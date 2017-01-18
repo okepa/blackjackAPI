@@ -8,15 +8,14 @@ const User = require('../models/user');
 //Here I need to get the token and userID from the route and send it to the lib file
 class accountValidationController {
     static accountValidationRequest(req, res) {
-        let testObj = {};
-        let token = jwt.sign(testObj, "blackjack", {
+        //let testObj = {};
+        let token = jwt.sign(req.body, "emailValidation", {
             expiresIn: "12h"
         });
         let urlString = `${process.env.URL}/accountValidation?${token}`;
-
-        let userID = "587e22de7d517dfa64044be6";
-
-        AccountValidation.checkValidation(token, userID)
+        //req.header.username
+        //req.header.token
+        AccountValidation.checkValidation(token, req.body.username)
             .then((result) => {
                 res.status(200).send({
                     success: "Account has been verified"

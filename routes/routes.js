@@ -7,11 +7,14 @@ const accountValidationController = require("../controllers/accountValidationCon
 //router.get("/", indexController.showIndex);
 
 router.route("/register")
-    .get(registerController.sendContactRequest)
+    .post(registerController.sendEmailRequest)
 
-router.route("/accountvalidation/:userid/:token")
-    .get(accountValidationController.accountValidationRequest)
+// router.route("/accountvalidation/:username/:token")
+//     .get(accountValidationController.accountValidationRequest)
 
-//http://blackjack.herokuapp.com/accountvalidation/userID/token
+router.route("/accountvalidation")
+    .post(accountValidationController.accountValidationRequest)
+
+//http://blackjackapi.herokuapp.com/accountvalidation
 
 module.exports = router;
