@@ -24,7 +24,6 @@ router.route("/login")
 router.route("/account/:id")
     .get(accountController.showAccDetails);
 
-
 router.route("/accountvalidation")
     .post(accountValidationController.accountValidationRequest)
 

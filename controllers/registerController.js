@@ -10,12 +10,11 @@ class RegisterController {
     static initUser(req, res) {
         Registration.newUser()
             .then((results) => {
-                res.status(200).send({
-                })
-                    .catch((err) => {
-                        res.status(400).send(err.message);
-                    });
+                res.status(200).send({})
             })
+            .catch(err => {
+                res.status(400).send(err.message);
+            });
     }
 
     //handles the createUser in the register.js
@@ -26,7 +25,7 @@ class RegisterController {
                     success: "user has been created"
                 })
             })
-            .catch((err) => {
+            .catch(err => {
                 res.status(400).send(err.message);
             });
     }

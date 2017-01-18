@@ -5,6 +5,7 @@ const routes = require("./routes/routes");
 const app = express();
 const mongoose = require('mongoose');
 const jwt = require("jsonwebtoken");
+const mongodb = require("mongodb");
 
 //connecting to DB 
 mongoose.connect(process.env.DB);
