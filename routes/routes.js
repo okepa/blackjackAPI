@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const indexController = require("../controllers/indexController");
-const loginController = require("../controllers/loginController");
+const LoginController = require("../controllers/loginController");
 const registerController = require("../controllers/registerController");
 const accountController = require("../controllers/accountController");
 
@@ -15,7 +15,7 @@ router.route("/register")
     .post(registerController.makeUser);
 
 router.route("/login")
-    .post(loginController.login);
+    .post(LoginController.login);
 
 router.route("/account/:id")
     .get(accountController.showAccDetails);
