@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const indexController = require("../controllers/indexController");
-const LoginController = require("../controllers/loginController");
+const loginController = require("../controllers/loginController");
 const registerController = require("../controllers/registerController");
 const accountController = require("../controllers/accountController");
 
@@ -15,10 +15,10 @@ router.route("/register")
     .post(registerController.makeUser);
 
 router.route("/login")
-    .post(LoginController.login);
+    .post(loginController.login);
 
-router.route("/account")
-    .get(accountController.showAcDetails);
+router.route("/account/:id")
+    .get(accountController.showAccDetails);
 
     
 module.exports = router;
