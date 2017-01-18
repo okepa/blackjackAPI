@@ -5,29 +5,38 @@ const moment = require("moment");
 let UserSchema = mongoose.Schema({
     fullName: {
         type: String,
-        required: true
+        required: true,
+        validate: {
+            validator: function (obj) {
+                if (!obj.fullName) {
+                    throw new Error("You must include a full name");
+                } else {
+                    this.fullName = obj.fullName;
+                }
+            }
+        }
     },
     email: {
         type: String,
         required: true,
         unique: true,
         validate: {
-            validator: function (email)   {
+            validator: function (email) {
                 let re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
                 return re.test(email)
             }
 
-          }
+        }
     },
     username: {
         type: String,
         required: true,
         unique: true,
     },
-    
     password: {
-        type: String,
-        required: true
+        type: String, minlength: 6, maxlength: 15,
+        required: true,
+        unique: true,
     },
     dob: {
         type: Date,
@@ -50,7 +59,11 @@ let UserSchema = mongoose.Schema({
     },
     token: {
         type: String,
+    },
+    access: {
+        type: Boolean,
+        default: false
     }
 });
 
-module.exports = mongoose.model("user", UserSchema);
+module.exports = mongoose.model("User", UserSchema);

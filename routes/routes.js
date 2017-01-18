@@ -17,8 +17,8 @@ router.route("/register")
 router.route("/login")
     .post(LoginController.login);
 
-router.route("/account")
-    .get(accountController.showAcDetails);
+// router.route("/account")
+//     .get(accountController.showAcDetails);
 
     
 module.exports = router;
