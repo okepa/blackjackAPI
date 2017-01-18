@@ -36,6 +36,7 @@ describe("demo-SUCCESS", (done) => {
  *  UNIT TEST - demo-FAILURE
  **/
 describe("demo-FAILURE", (done) => {
+    // dummy object
     let userData = {
         fullName: 12 < 12,
         email: 1 & 2,

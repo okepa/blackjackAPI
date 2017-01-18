@@ -1,13 +1,12 @@
 const mongoose = require("mongoose");
 const moment = require("moment");
 
-//create user schema
 let UserSchema = mongoose.Schema({
     fullName: {
         type: String,
         required: true
-        // validate: nodemvd.$notEmpty({ msg: 'Please enter your full name.' })
     },
+
     email: {
         type: String,
         required: true,
@@ -20,24 +19,22 @@ let UserSchema = mongoose.Schema({
 
         }
     },
+
     username: {
         type: String,
         required: true,
         unique: true
     },
-
     password: {
         type: String,
         required: true,
-        
-
+        unique: true
     },
+
     dob: {
         type: Date,
         require: true,
         validate: {
-            //a validation function that uses moment to find the diff in years (value)
-            //checks to see if a users is older than 18
             validator: function (value) {
                 let years = moment().diff(moment(value), 'years');
                 if (years < 18) {
@@ -45,19 +42,26 @@ let UserSchema = mongoose.Schema({
                     return false;
                 } else {
                     console.log(years);
-
                     return true;
                 }
             },
         }
     },
+
     token: {
         type: String,
     },
+
     access: {
         type: Boolean,
         default: false
+    },
+
+    balance: {
+        type: Number,
+        default: 0
     }
+    
 });
 
 module.exports = mongoose.model("user", UserSchema);
