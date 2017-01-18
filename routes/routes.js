@@ -24,10 +24,7 @@ router.route("/login")
 router.route("/account/:id")
     .get(accountController.showAccDetails);
 
-
 router.route("/accountvalidation")
     .post(accountValidationController.accountValidationRequest)
-
-//http://blackjackapi.herokuapp.com/accountvalidation
 
 module.exports = router;
