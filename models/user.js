@@ -6,15 +6,6 @@ let UserSchema = mongoose.Schema({
     fullName: {
         type: String,
         required: true,
-        validate: {
-            validator: function (obj) {
-                if (!obj.fullName) {
-                    throw new Error("You must include a full name");
-                } else {
-                    this.fullName = obj.fullName;
-                }
-            }
-        }
     },
     email: {
         type: String,
