@@ -9,10 +9,10 @@ const User = require('../models/user');
 class accountValidationController {
     static accountValidationRequest(req, res) {
         //let testObj = {};
-        // let token = jwt.sign(req.body, "emailValidation", {
-        //     expiresIn: "12h"
-        // });
-        // let urlString = `${process.env.URL}/accountValidation?${token}`;
+        let token = jwt.sign(req.body, "emailValidation", {
+            expiresIn: "12h"
+        });
+        let urlString = `${process.env.URL}/accountValidation?${token}`;
         //req.header.username
         //req.header.token
         AccountValidation.checkValidation(token, req.body.username)
