@@ -14,11 +14,11 @@ const registerLib = require('../lib/register');
 describe("demo-SUCCESS", (done) => {
     // dummy object
     let userData = {
-        fullName: "Josh Bello",
-        email: "abc.abc@gmail.com",
-        username: "jbjb ",
+        fullName: "testing test",
+        email: "testemail@gmail.com",
+        username: "testname",
         password: "hello",
-        dob: new Date("1994-08-30")
+        dob: new Date("1993-08-30")
     };
 
     it("if data is valid then the object should be saved to the database", (done) => {
