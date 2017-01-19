@@ -15,7 +15,7 @@ class accountValidationController {
         // let urlString = `${process.env.URL}/accountValidation?${token}`;
         //req.header.username
         //req.header.token
-        AccountValidation.checkValidation(token, req.body.username)
+        AccountValidation.checkValidation(req.body.token, req.body.username)
             .then((result) => {
                 res.status(200).send({
                     success: "Account has been verified"

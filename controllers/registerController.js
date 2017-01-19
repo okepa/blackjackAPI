@@ -27,6 +27,16 @@ class RegisterController {
                             success: "Email has been sent & User has been created"
                         })
                     })
+                    .then(() => {
+                        Registration.newUserBalance(req)
+                        console.log("worked");
+                    })
+                    // 
+                    .then(result =>{
+                        // req.body.existingUserId = result.existingUserId;
+                         Registration.findAndUpdateBalance(req)
+                        console.log("updating exisiting user balance");
+                        })
                     .catch(err => {
                         res.status(400).send(err.message);
                     });
