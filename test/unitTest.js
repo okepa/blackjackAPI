@@ -32,26 +32,3 @@ describe("demo-SUCCESS", (done) => {
     })
 })
 
-/** 
- *  UNIT TEST - demo-FAILURE
- **/
-describe("demo-FAILURE", (done) => {
-    // dummy object
-    let userData = {
-        fullName: 12 < 12,
-        email: 1 & 2,
-        username: 12345,
-        password: 123,
-        dob: new Date("1993-08-30")
-    };
-
-    it("if data is invalid it should not save to the database", (done) => {
-        expect(userData.fullName).to.be.an("string"),
-            expect(userData.username).to.be.an("string"),
-            expect(userData.email).to.be.an("string"),
-            expect(userData.password).to.be.an("string"),
-            expect(userData.dob).to.be.an("Date");
-        User.create({ userData })
-        done();
-    })
-})
