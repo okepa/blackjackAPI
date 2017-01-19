@@ -32,17 +32,34 @@ class RegisterController {
                         console.log("worked");
                     })
                     // 
-                    .then(result =>{
+                    .then(result => {
                         // req.body.existingUserId = result.existingUserId;
-                         Registration.findAndUpdateBalance(req)
+                        Registration.findAndUpdateBalance(req)
                         console.log("updating exisiting user balance");
-                        })
+                    })
                     .catch(err => {
                         res.status(400).send(err.message);
                     });
             })
+            .catch(err => {
+                res.status(400).send(err.message);
+            });
     }
 
+    static sendEmailRequest(req, res) {
+        //const contactRequest = new Email(req.body);
+        email.sendEmail(req.body)
+            .then(() => {
+                res.status(200).send({
+                    success: "Email has been sent"
+                })
+                //res.redirect("/login");
+            })
+            .catch(error => {
+                res.status(400).send(err.message);
+                //res.redirect("/login");
+            });
+    }
 }
 
 module.exports = RegisterController;

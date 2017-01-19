@@ -3,9 +3,15 @@ const moment = require("moment");
 
 //create user schema
 let UserSchema = mongoose.Schema({
-    fullName: {
+        fullName: {
         type: String,
-        required: true
+        required: true,
+        validate: {
+            validator: function(fullName){
+                let re = /^[a-zA-Z]+$/;
+                return re.test(fullName)
+            }
+        }
         // validate: nodemvd.$notEmpty({ msg: 'Please enter your full name.' })
     },
     email: {
