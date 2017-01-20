@@ -33,6 +33,9 @@ router.route("/account/:id")
 router.route("/accountvalidation")
     .post(apiCheck, accountValidationController.accountValidationRequest)
 
+router.route("/charge")
+    .post(verifyToken, chargeController.getCharge)
+
 module.exports = router;
 
 //user authentication
@@ -59,7 +62,6 @@ function verifyToken(req) {
         }
     )
 }
-
 /**
  * This function verifies a valid token is provided on each route
  * @param req
@@ -82,3 +84,4 @@ function apiCheck(req, res, next) {
 
 
 }
+
