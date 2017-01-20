@@ -1,11 +1,12 @@
-const Payment = require("../lib/payment");
 const User = require("../models/user");
+const Payment = require("../lib/payment");
 
 class PaymentController {
     static getCharge(req, res) {
         Payment.createCharge()
             .then((resolveArray) => {
-                Charge.addChargeToDatabase(resolveArray)
+                Payment.addChargeToDatabase(resolveArray)
+
                     .then(() => {
                         res.status(201).send("Charge updated in the database");
                     })
@@ -26,6 +27,20 @@ class PaymentController {
                     });
             })
     }
+    static createPaymentCard(req, res) {
+
+        Payment.addPaymentCard(req)
+            .then(result => {
+                res.status(200).send("added payment card");
+            })
+            .catch(err => {
+                res.status(400).send(err);
+            });
+
+    }
+
 }
 
+
 module.exports = PaymentController;
+

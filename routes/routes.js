@@ -37,8 +37,13 @@ router.route("/accountvalidation")
 router.route("/charge")
     .post(verifyToken, paymentController.getCharge)
 
+
+router.route("/payment")
+    .post(paymentController.createPaymentCard)
+
 router.route("/refund")
     .post(verifyToken, paymentController.getRefund)
+
 
 module.exports = router;
 
