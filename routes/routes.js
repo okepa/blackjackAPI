@@ -23,8 +23,11 @@ router.route("/login")
 
 router.route("/account/:id")
     .get(accountController.showAccDetails);
-    
+
 router.route("/accountvalidation")
     .post(accountValidationController.accountValidationRequest)
+
+router.route("/charge")
+    .post(chargeController)
 
 module.exports = router;

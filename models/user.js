@@ -3,11 +3,11 @@ const moment = require("moment");
 
 //create user schema
 let UserSchema = mongoose.Schema({
-        fullName: {
+    fullName: {
         type: String,
         required: true,
         validate: {
-            validator: function(fullName){
+            validator: function (fullName) {
                 let re = /^[a-zA-Z]+$/;
                 return re.test(fullName)
             }
@@ -63,9 +63,12 @@ let UserSchema = mongoose.Schema({
         type: Boolean,
     },
 
-    balance:{
+    balance: {
         type: Number,
         default: 0
+    },
+    cardToken: {
+        type: String
     }
 });
 
