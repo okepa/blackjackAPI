@@ -5,23 +5,26 @@ class PaymentController {
     static getCharge(req, res) {
         Payment.createCharge()
             .then((resolveArray) => {
-                Charge.updateDatabase(resolveArray)
+                Charge.addChargeToDatabase(resolveArray)
                     .then(() => {
                         res.status(201).send("Charge updated in the database");
                     })
                     .catch(err => {
-                        res.status(400).send(err.message);
+                        res.status(401).send(err.message);
                     });
             })
     }
     static getRefund(req, res) {
         Payment.createRefund()
-            .then((results) => {
-                res.status(200).send({})
+            .then((resolveArray) => {
+                Charge.addRefundToDatabase(resolveArray)
+                    .then(() => {
+                        res.status(201).send("Refund has occurred");
+                    })
+                    .catch(err => {
+                        res.status(401).send(err.message);
+                    });
             })
-            .catch(err => {
-                res.status(400).send(err.message);
-            });
     }
 }
 
