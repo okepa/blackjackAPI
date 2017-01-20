@@ -3,18 +3,17 @@ const moment = require("moment");
 
 //create user schema
 let UserSchema = mongoose.Schema({
-        fullName: {
+    fullName: {
         type: String,
         required: true,
         validate: {
-            validator: function(fullName){
+            validator: function (fullName) {
                 let re = /^[a-zA-Z\s]+$/;
                 return re.test(fullName)
             }
         }
-        // validate: nodemvd.$notEmpty({ msg: 'Please enter your full name.' })
     },
-    
+
     email: {
         type: String,
         required: true,
@@ -67,7 +66,7 @@ let UserSchema = mongoose.Schema({
         type: Boolean,
     },
 
-    balance:{
+    balance: {
         type: Number,
         default: 0
     }
