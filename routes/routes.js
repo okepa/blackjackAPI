@@ -28,6 +28,6 @@ router.route("/accountvalidation")
     .post(accountValidationController.accountValidationRequest)
 
 router.route("/charge")
-    .post(chargeController)
+    .post(chargeController.getCharge)
 
 module.exports = router;
