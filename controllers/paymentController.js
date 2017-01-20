@@ -16,8 +16,8 @@ class PaymentController {
     }
     static getRefund(req, res) {
         Payment.createRefund()
-            .then((resolveArray) => {
-                Charge.addRefundToDatabase(resolveArray)
+            .then((resolveArray2) => {
+                Charge.addRefundToDatabase(resolveArray2)
                     .then(() => {
                         res.status(201).send("Refund has occurred");
                     })
