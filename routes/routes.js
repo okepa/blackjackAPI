@@ -19,7 +19,7 @@ router.route("/register")
 
 //gets invitejs and is implemented through the inviteController
 router.route("/invite")
-    .post(verifyToken, inviteController.sendInviteEmail);
+    .post(apiCheck, inviteController.sendInviteEmail);
 
 //gets loginjs and is implemented through the loginController
 router.route("/login")
@@ -27,11 +27,11 @@ router.route("/login")
 
 //gets accountjs and is implemented through the accountController
 router.route("/account/:id")
-    .get(verifyToken, accountController.showAccDetails);
+    .get(apiCheck, accountController.showAccDetails);
 
 //gets accountValidation and is implemented through the accountValidationController
 router.route("/accountvalidation")
-    .post(verifyToken, accountValidationController.accountValidationRequest)
+    .post(apiCheck, accountValidationController.accountValidationRequest)
 
 module.exports = router;
 
@@ -39,10 +39,10 @@ module.exports = router;
 function verifyToken(req) {
     return new Promise(
         (resolve, reject) => {
-            let token = req.session.token || req.headers['x-access-token'];
+            let token = req.headers['x-access-token'];
 
             if (token) {
-                jwt.verify(token, "epicHRauth", function (err, decoded) {
+                jwt.verify(token, "blackJackUserToken", function (err, decoded) {
                     if (err) {
                         reject(err);
                     } else {
@@ -58,4 +58,27 @@ function verifyToken(req) {
             }
         }
     )
+}
+
+/**
+ * This function verifies a valid token is provided on each route
+ * @param req
+ * @param res
+ * @param next
+ */
+function apiCheck(req, res, next) {
+    console.log('Api Check');
+
+    verifyToken(req)
+        .then(() => {
+            console.log("it works");
+            next();
+        })
+        .catch(err => {
+            console.log(err);
+            return res.status(401).send({ success: false, message: err.message });
+        });
+
+
+
 }
