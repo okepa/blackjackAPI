@@ -22,6 +22,7 @@
     "mongodb": "^2.2.21",
     "mongoose": "^4.7.7",
     "password-hash": "^1.2.2",
-    "sendgrid": "^3.0.11"
+    "sendgrid": "^3.0.11",
+    "stripe": "^4.15.0"
   }
 }

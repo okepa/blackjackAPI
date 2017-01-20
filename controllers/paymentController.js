@@ -1,9 +1,9 @@
-const Charge = require("../lib/charge");
+const Payment = require("../lib/payment");
 const User = require("../models/user");
 
-class ChargeController {
+class PaymentController {
     static getCharge(req, res) {
-        Charge.createCharge()
+        Payment.createCharge()
             .then((resolveArray) => {
                 Charge.updateDatabase(resolveArray)
                     .then(() => {
@@ -14,6 +14,15 @@ class ChargeController {
                     });
             })
     }
+    static getRefund(req, res) {
+        Payment.createRefund()
+            .then((results) => {
+                res.status(200).send({})
+            })
+            .catch(err => {
+                res.status(400).send(err.message);
+            });
+    }
 }
 
-module.exports = ChargeController;
+module.exports = PaymentController;
