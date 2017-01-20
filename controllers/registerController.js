@@ -58,14 +58,18 @@ class RegisterController {
                     })
                     .then(() => {
                         Registration.newUserBalance(req)
-                        console.log("worked");
+                        //console.log("worked");
                     })
                     // 
                     .then(result =>{
-                        // req.body.existingUserId = result.existingUserId;
+                        console.log("result for next method");
+                         console.log(result);
+                         //req.body.existingUserId = result.existingUserId;
+                         //console.log(req.body.existingUserId);
                          Registration.findAndUpdateBalance(req)
-                        console.log("updating exisiting user balance");
+                         console.log("updating exisiting user balance");
                         })
+                        // delete the record from invite db
                     .catch(err => {
                         res.status(400).send(err.message);
                     });
