@@ -6,6 +6,7 @@ const registerController = require("../controllers/registerController");
 const accountController = require("../controllers/accountController");
 const accountValidationController = require("../controllers/accountValidationController");
 const inviteController = require("../controllers/inviteController");
+const authController = require("../controllers/authController");
 //gets the indexController
 router.route("/")
     .get(indexController.showIndex);
