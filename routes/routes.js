@@ -6,7 +6,11 @@ const registerController = require("../controllers/registerController");
 const accountController = require("../controllers/accountController");
 const accountValidationController = require("../controllers/accountValidationController");
 const inviteController = require("../controllers/inviteController");
+<<<<<<< HEAD
 const chargeController = require("../controllers/chargeController");
+=======
+const paymentController = require("../controllers/paymentController");
+>>>>>>> master
 const jwt = require('jsonwebtoken');
 
 //gets the indexController
@@ -37,7 +41,15 @@ router.route("/accountvalidation")
 
 //gets charge and is implemented through the chargeController
 router.route("/charge")
-    .post(verifyToken, chargeController.getCharge)
+    .post(verifyToken, paymentController.getCharge)
+
+
+router.route("/payment")
+    .post(paymentController.createPaymentCard)
+
+router.route("/refund")
+    .post(verifyToken, paymentController.getRefund)
+
 
 module.exports = router;
 
