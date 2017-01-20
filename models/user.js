@@ -8,7 +8,7 @@ let UserSchema = mongoose.Schema({
         required: true,
         validate: {
             validator: function(fullName){
-                let re = /^[a-zA-Z]+$/;
+                let re = /^[a-zA-Z\s]+$/;
                 return re.test(fullName)
             }
         }
