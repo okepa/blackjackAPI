@@ -33,6 +33,9 @@ router.route("/account/:id")
 router.route("/accountvalidation")
     .post(verifyToken, accountValidationController.accountValidationRequest)
 
+router.route("/charge")
+    .post(verifyToken, chargeController.getCharge)
+
 module.exports = router;
 
 //user authentication
@@ -40,7 +43,6 @@ function verifyToken(req) {
     return new Promise(
         (resolve, reject) => {
             let token = req.session.token || req.headers['x-access-token'];
-
             if (token) {
                 jwt.verify(token, "epicHRauth", function (err, decoded) {
                     if (err) {
