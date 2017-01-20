@@ -61,12 +61,12 @@ class RegisterController {
                         //console.log("worked");
                     })
                     // 
-                    .then(result =>{
+                    .then((result) =>{
                         console.log("result for next method");
                          console.log(result);
                          //req.body.existingUserId = result.existingUserId;
                          //console.log(req.body.existingUserId);
-                         Registration.findAndUpdateBalance(req)
+                         Registration.findAndUpdateBalance(result)
                          console.log("updating exisiting user balance");
                         })
                         // delete the record from invite db
