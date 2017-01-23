@@ -34,15 +34,14 @@ router.route("/account/:id")
 
 //gets accountValidation and is implemented through the accountValidationController
 router.route("/accountvalidation")
-    .post(tokenAuthenicationController.apiCheck, accountValidationController.accountValidationRequest)
+    .post(accountValidationController.accountValidationRequest)
 
 //gets charge and is implemented through the chargeController
 router.route("/charge")
     .post(tokenAuthenicationController.apiCheck, paymentController.getCharge)
 
-
 router.route("/payment")
-    .post(paymentController.createPaymentCard)
+    .post(apiCheck, paymentController.createPaymentCard)
 
 router.route("/refund")
     .post(tokenAuthenicationController.apiCheck, paymentController.getRefund)
