@@ -17,7 +17,7 @@ class RegisterController {
             });
     }
 
-        //handles the createUser in the register.js
+    //handles the createUser in the register.js
     static makeUser(req, res) {
         Registration.createUser(req)
             .then(() => {
@@ -29,18 +29,13 @@ class RegisterController {
                     })
                     .then(() => {
                         Registration.newUserBalance(req)
-                        //console.log("worked");
                     })
-                    // 
-                    .then(result =>{
-                        console.log("result for next method");
-                         console.log(result);
-                         //req.body.existingUserId = result.existingUserId;
-                         //console.log(req.body.existingUserId);
-                         Registration.findAndUpdateBalance(req)
-                         console.log("updating exisiting user balance");
-                        })
-                        // delete the record from invite db
+                    .then(result => {
+                        console.log(result);
+                        Registration.findAndUpdateBalance(req)
+                        console.log("updating exisiting user balance");
+                    })
+                    // delete the record from invite db
                     .catch(err => {
                         res.status(400).send(err.message);
                     });
@@ -49,19 +44,19 @@ class RegisterController {
 
 }
 
-    // static sendEmailRequest(req, res) {
-    //     //const contactRequest = new Email(req.body);
-    //     email.sendEmail(req.body)
-    //         .then(() => {
-    //             res.status(200).send({
-    //                 success: "Email has been sent"
-    //             })
-    //             //res.redirect("/login");
-    //         })
-    //         .catch(error => {
-    //             res.status(400).send(err.message);
-    //             //res.redirect("/login");
-    //         });
-    // }
+// static sendEmailRequest(req, res) {
+//     //const contactRequest = new Email(req.body);
+//     email.sendEmail(req.body)
+//         .then(() => {
+//             res.status(200).send({
+//                 success: "Email has been sent"
+//             })
+//             //res.redirect("/login");
+//         })
+//         .catch(error => {
+//             res.status(400).send(err.message);
+//             //res.redirect("/login");
+//         });
+// }
 
 module.exports = RegisterController;

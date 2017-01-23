@@ -14,6 +14,7 @@ class PaymentController {
                     });
             })
     }
+    
     static getRefund(req, res) {
         Payment.createRefund(req)
             .then((resolveArray2) => {
@@ -26,8 +27,8 @@ class PaymentController {
                     });
             })
     }
-    static createPaymentCard(req, res) {
 
+    static createPaymentCard(req, res) {
         Payment.addPaymentCard(req)
             .then(result => {
                 res.status(200).send("added payment card");
@@ -35,11 +36,8 @@ class PaymentController {
             .catch(err => {
                 res.status(400).send(err);
             });
-
     }
-
 }
-
 
 module.exports = PaymentController;
 

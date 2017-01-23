@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const indexController = require("../controllers/indexController");
-const LoginController = require("../controllers/loginController");
+const loginController = require("../controllers/loginController");
 const registerController = require("../controllers/registerController");
 const accountController = require("../controllers/accountController");
 const accountValidationController = require("../controllers/accountValidationController");
@@ -25,12 +25,12 @@ router.route("/invite")
 
 //gets loginjs and is implemented through the loginController
 router.route("/login")
-    .post(LoginController.login);
+    .post(loginController.login);
 
 //gets accountjs and is implemented through the accountController
 router.route("/account/:id")
     .get(tokenAuthenicationController.apiCheck, accountController.showAccDetails)
-    .delete(tokenAuthenicationController.apiCheck,accountController.deleteAccDetails);
+    .delete(tokenAuthenicationController.apiCheck, accountController.deleteAccDetails);
 
 //gets accountValidation and is implemented through the accountValidationController
 router.route("/accountvalidation")
@@ -40,12 +40,13 @@ router.route("/accountvalidation")
 router.route("/charge")
     .post(tokenAuthenicationController.apiCheck, paymentController.getCharge)
 
+//gets payment and is implemented through the paymentController
 router.route("/payment")
-    .post(paymentController.createPaymentCard)
+    .post(tokenAuthenicationController.apiCheck, paymentController.createPaymentCard)
 
+//gets refund and is implemented through the tokenAuthenticationController
 router.route("/refund")
     .post(tokenAuthenicationController.apiCheck, paymentController.getRefund)
-
 
 module.exports = router;
 
