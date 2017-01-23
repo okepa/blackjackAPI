@@ -7,7 +7,6 @@ const accountController = require("../controllers/accountController");
 const accountValidationController = require("../controllers/accountValidationController");
 const inviteController = require("../controllers/inviteController");
 const paymentController = require("../controllers/paymentController");
-
 const jwt = require('jsonwebtoken');
 
 //gets the indexController
