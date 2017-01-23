@@ -3,10 +3,9 @@ const Payment = require("../lib/payment");
 
 class PaymentController {
     static getCharge(req, res) {
-        Payment.createCharge()
+        Payment.createCharge(req)
             .then((resolveArray) => {
                 Payment.addChargeToDatabase(resolveArray)
-
                     .then(() => {
                         res.status(201).send("Charge updated in the database");
                     })
@@ -18,7 +17,7 @@ class PaymentController {
     static getRefund(req, res) {
         Payment.createRefund()
             .then((resolveArray2) => {
-                Charge.addRefundToDatabase(resolveArray2)
+                Payment.addRefundToDatabase(resolveArray2)
                     .then(() => {
                         res.status(201).send("Refund has occurred");
                     })

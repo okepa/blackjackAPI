@@ -35,13 +35,13 @@ router.route("/accountvalidation")
     .post(apiCheck, accountValidationController.accountValidationRequest)
 
 router.route("/charge")
-    .post(verifyToken, paymentController.getCharge)
+    .post(paymentController.getCharge)
 
 router.route("/payment")
-    .post(paymentController.createPaymentCard)
+    .post(apiCheck, paymentController.createPaymentCard)
 
 router.route("/refund")
-    .post(verifyToken, paymentController.getRefund)
+    .post(apiCheck, paymentController.getRefund)
 
 
 module.exports = router;
