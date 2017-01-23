@@ -25,7 +25,6 @@ class AccountController {
                 Account.refundMoney(refundAccountDetails)
             })
             // .then(() => {
-
             //     //3. delete account
             //     Account.removeAccDetails(req)
             // })
