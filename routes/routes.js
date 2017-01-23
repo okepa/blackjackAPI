@@ -37,7 +37,6 @@ router.route("/accountvalidation")
 router.route("/charge")
     .post(verifyToken, paymentController.getCharge)
 
-
 router.route("/payment")
     .post(paymentController.createPaymentCard)
 
