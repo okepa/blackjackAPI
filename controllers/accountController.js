@@ -23,12 +23,15 @@ class AccountController {
         Account.retrieveAccBalance(req)
             .then((result) => {//result = account balance
                 //2. refund to strip account(res.balance)
-                Account.refundMoney(result)
+                Account.refundMoney(result,req)
             })
-            // .then(() => {
-            //     //3. delete account
-            //     Account.removeAccDetails(/*parameter*/)
-            // })
+            /*
+            .then(() => {
+                
+                //3. delete account
+                Account.removeAccDetails(req)
+            })
+            */
             .then(() => {
                 //console.log(result);
                 res.status(200).send({

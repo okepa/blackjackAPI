@@ -1,6 +1,6 @@
 const User = require("../models/user");
 const hash = require("password-hash");
-const loginLib = require("../lib/loginLib");
+const loginLib = require("../lib/login");
 
 class LoginController {
     /**

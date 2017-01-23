@@ -64,6 +64,7 @@ let UserSchema = mongoose.Schema({
 
     access: {
         type: Boolean,
+        default: false
     },
 
     balance: {
