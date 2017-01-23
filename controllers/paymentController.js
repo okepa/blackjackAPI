@@ -15,7 +15,7 @@ class PaymentController {
             })
     }
     static getRefund(req, res) {
-        Payment.createRefund()
+        Payment.createRefund(req)
             .then((resolveArray2) => {
                 Payment.addRefundToDatabase(resolveArray2)
                     .then(() => {
