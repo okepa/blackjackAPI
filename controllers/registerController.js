@@ -18,35 +18,6 @@ class RegisterController {
     }
 
     //handles the createUser in the register.js
-    // static makeUser(req, res) {
-    //     Registration.createUser(req)
-    //         .then(() => {
-    //             email.sendEmail(req.body)
-    //                 .then(() => {
-    //                     res.status(201).send({
-    //                         success: "Email has been sent & User has been created"
-    //                     })
-    //                 })
-    //                 .then(() => {
-    //                     Registration.newUserBalance(req)
-    //                     console.log("worked");
-    //                 })
-    //                 // 
-    //                 .then(result => {
-    //                     // req.body.existingUserId = result.existingUserId;
-    //                     Registration.findAndUpdateBalance(req)
-    //                     console.log("updating exisiting user balance");
-    //                 })
-    //                 // .catch(err => {
-    //                 //     res.status(400).send(err.message);
-    //                 // });
-    //                 // })
-    //                 .catch(err => {
-    //                     res.status(400).send(err.message);
-    //                 });
-    //         })
-    // }
-        //handles the createUser in the register.js
     static makeUser(req, res) {
         Registration.createUser(req)
             .then(() => {
@@ -58,18 +29,21 @@ class RegisterController {
                     })
                     .then(() => {
                         Registration.newUserBalance(req)
-                        //console.log("worked");
                     })
                     // 
-                    .then(result =>{
+                    .then((result) =>{
                         console.log("result for next method");
-                         console.log(result);
+                        //  console.log(res);
                          //req.body.existingUserId = result.existingUserId;
                          //console.log(req.body.existingUserId);
-                         Registration.findAndUpdateBalance(req)
+                         Registration.findAndUpdateBalance(req, res)
                          console.log("updating exisiting user balance");
                         })
+                    .then((result) => {
                         // delete the record from invite db
+                        Registration.removeInviteFromDb(req, res)
+                        console.log("deleting from DB");
+                    })
                     .catch(err => {
                         res.status(400).send(err.message);
                     });
@@ -78,19 +52,19 @@ class RegisterController {
 
 }
 
-    // static sendEmailRequest(req, res) {
-    //     //const contactRequest = new Email(req.body);
-    //     email.sendEmail(req.body)
-    //         .then(() => {
-    //             res.status(200).send({
-    //                 success: "Email has been sent"
-    //             })
-    //             //res.redirect("/login");
-    //         })
-    //         .catch(error => {
-    //             res.status(400).send(err.message);
-    //             //res.redirect("/login");
-    //         });
-    // }
+// static sendEmailRequest(req, res) {
+//     //const contactRequest = new Email(req.body);
+//     email.sendEmail(req.body)
+//         .then(() => {
+//             res.status(200).send({
+//                 success: "Email has been sent"
+//             })
+//             //res.redirect("/login");
+//         })
+//         .catch(error => {
+//             res.status(400).send(err.message);
+//             //res.redirect("/login");
+//         });
+// }
 
 module.exports = RegisterController;

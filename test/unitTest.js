@@ -5,7 +5,7 @@ const expect = require('chai').expect;
 const assert = require("chai").assert;
 //app modules
 const User = require('../models/user');
-const loginLib = require('../lib/loginLib');
+const loginLib = require('../lib/login');
 const registerLib = require('../lib/register');
 
 /** 
