@@ -38,7 +38,7 @@ router.route("/accountvalidation")
 
 //gets charge and is implemented through the chargeController
 router.route("/charge")
-    .post(tokenAuthenicationController.apiCheck, paymentController.getCharge)
+    .post(paymentController.getCharge)
 
 router.route("/payment")
     .post(tokenAuthenicationController.apiCheck, paymentController.createPaymentCard)
