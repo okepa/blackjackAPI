@@ -30,12 +30,20 @@ class RegisterController {
                     .then(() => {
                         Registration.newUserBalance(req)
                     })
-                    .then(result => {
-                        console.log(result);
-                        Registration.findAndUpdateBalance(req)
-                        console.log("updating exisiting user balance");
+                    // 
+                    .then((result) =>{
+                        console.log("result for next method");
+                        //  console.log(res);
+                         //req.body.existingUserId = result.existingUserId;
+                         //console.log(req.body.existingUserId);
+                         Registration.findAndUpdateBalance(req, res)
+                         console.log("updating exisiting user balance");
+                        })
+                    .then((result) => {
+                        // delete the record from invite db
+                        Registration.removeInviteFromDb(req, res)
+                        console.log("deleting from DB");
                     })
-                    // delete the record from invite db
                     .catch(err => {
                         res.status(400).send(err.message);
                     });

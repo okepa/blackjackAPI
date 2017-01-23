@@ -3,28 +3,36 @@ const Payment = require("../lib/payment");
 
 class PaymentController {
     static getCharge(req, res) {
-        Payment.createCharge(req)
-            .then((resolveArray) => {
-                Payment.addChargeToDatabase(resolveArray)
-                    .then(() => {
-                        res.status(201).send("Charge updated in the database");
+        Payment.findAndRetrieveToken(req)
+            .then((result) => {
+                Payment.createCharge(req, result)
+                    .then((resolveArray) => {
+                        Payment.addChargeToDatabase(resolveArray)
+                            .then(() => {
+                                res.status(201).send("Charge updated in the database");
+                            })
+                            .catch(err => {
+                                //console.log("getCharge-failure");
+                                res.status(401).send(err.message);
+                            });
                     })
-                    .catch(err => {
-                        res.status(401).send(err.message);
-                    });
-            })
+            }
+            )
     }
-    
+
     static getRefund(req, res) {
-        Payment.createRefund(req)
-            .then((resolveArray2) => {
-                Payment.addRefundToDatabase(resolveArray2)
-                    .then(() => {
-                        res.status(201).send("Refund has occurred");
+        Payment.findAndRetrieveToken(req)
+            .then((req, result) => {
+                Payment.createRefund(req, result)
+                    .then((resolveArray2) => {
+                        Payment.addRefundToDatabase(resolveArray2)
+                            .then(() => {
+                                res.status(201).send("Refund has occurred");
+                            })
+                            .catch(err => {
+                                res.status(401).send(err.message);
+                            });
                     })
-                    .catch(err => {
-                        res.status(401).send(err.message);
-                    });
             })
     }
 
