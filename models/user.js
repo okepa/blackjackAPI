@@ -64,12 +64,14 @@ let UserSchema = mongoose.Schema({
 
     access: {
         type: Boolean,
+        default: false
     },
 
     balance: {
         type: Number,
         default: 0
     },
+    
     cardToken: {
         type: String,
         default: "notoken"

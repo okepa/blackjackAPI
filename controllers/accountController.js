@@ -11,7 +11,6 @@ class AccountController {
                 })
             })
             .catch(err => {
-                // if (!req.params.id) res.status(400).send({ error: "Please include an id" });
                 console.log(err);
                 res.status(400).send(err.message);
             });
@@ -21,16 +20,16 @@ class AccountController {
         console.log("deleteAccDetails - controller function");
         //1. query db => resolve account balance
         Account.retrieveAccBalance(req)
-            .then((result) => {//result = account balance
+            .then((refundAccountDetails) => {//result = account balance
                 //2. refund to strip account(res.balance)
-                Account.refundMoney(result)
+                Account.refundMoney(refundAccountDetails)
             })
             // .then(() => {
+
             //     //3. delete account
-            //     Account.removeAccDetails(/*parameter*/)
+            //     Account.removeAccDetails(req)
             // })
             .then(() => {
-                //console.log(result);
                 res.status(200).send({
                     success: "Your Balance has been refund to your Account & your Membership/Account has been deleted"
                 })
