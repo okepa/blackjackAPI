@@ -6,11 +6,8 @@ const registerController = require("../controllers/registerController");
 const accountController = require("../controllers/accountController");
 const accountValidationController = require("../controllers/accountValidationController");
 const inviteController = require("../controllers/inviteController");
-<<<<<<< HEAD
-const chargeController = require("../controllers/chargeController");
-=======
 const paymentController = require("../controllers/paymentController");
->>>>>>> master
+const tokenAuthenication = require("../controllers/tokenAuthenicationController");
 const jwt = require('jsonwebtoken');
 
 //gets the indexController
@@ -24,7 +21,7 @@ router.route("/register")
 
 //gets invitejs and is implemented through the inviteController
 router.route("/invite")
-    .post(apiCheck, inviteController.sendInviteEmail);
+    .post(tokenAuthenication.apiCheck, inviteController.sendInviteEmail);
 
 //gets loginjs and is implemented through the loginController
 router.route("/login")
@@ -32,71 +29,27 @@ router.route("/login")
 
 //gets accountjs and is implemented through the accountController
 router.route("/account/:id")
-    .get(apiCheck, accountController.showAccDetails)
-    .delete(apiCheck,accountController.deleteAccDetails);
+    .get(tokenAuthenication.apiCheck, accountController.showAccDetails)
+    .delete(tokenAuthenication.apiCheck,accountController.deleteAccDetails);
 
 //gets accountValidation and is implemented through the accountValidationController
 router.route("/accountvalidation")
-    .post(apiCheck, accountValidationController.accountValidationRequest)
+    .post(tokenAuthenication.apiCheck, accountValidationController.accountValidationRequest)
 
 //gets charge and is implemented through the chargeController
 router.route("/charge")
-    .post(verifyToken, paymentController.getCharge)
+    .post(tokenAuthenication.apiCheck, paymentController.getCharge)
 
 
 router.route("/payment")
     .post(paymentController.createPaymentCard)
 
 router.route("/refund")
-    .post(verifyToken, paymentController.getRefund)
+    .post(tokenAuthenication.apiCheck, paymentController.getRefund)
 
 
 module.exports = router;
 
-//user authentication
-function verifyToken(req) {
-    return new Promise(
-        (resolve, reject) => {
-            let token = req.headers['x-access-token'];
-
-            if (token) {
-                jwt.verify(token, "blackJackUserToken", function (err, decoded) {
-                    if (err) {
-                        reject(err);
-                    } else {
-                        req.decoded = decoded;
-                        resolve();
-                    }
-                });
-            } else {
-                reject({
-                    success: false,
-                    message: "No token provided"
-                });
-            }
-        }
-    )
-}
-/**
- * This function verifies a valid token is provided on each route
- * @param req
- * @param res
- * @param next
- */
-function apiCheck(req, res, next) {
-    console.log('Api Check');
-
-    verifyToken(req)
-        .then(() => {
-            console.log("it works");
-            next();
-        })
-        .catch(err => {
-            console.log(err);
-            return res.status(401).send({ success: false, message: err.message });
-        });
 
 
-
-}
 
