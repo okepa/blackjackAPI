@@ -6,6 +6,8 @@ const registerController = require("../controllers/registerController");
 const accountController = require("../controllers/accountController");
 const accountValidationController = require("../controllers/accountValidationController");
 const inviteController = require("../controllers/inviteController");
+const paymentController = require("../controllers/paymentController");
+
 const jwt = require('jsonwebtoken');
 
 //gets the indexController
@@ -19,7 +21,7 @@ router.route("/register")
 
 //gets invitejs and is implemented through the inviteController
 router.route("/invite")
-    .post(verifyToken, inviteController.sendInviteEmail);
+    .post(apiCheck, inviteController.sendInviteEmail);
 
 //gets loginjs and is implemented through the loginController
 router.route("/login")
@@ -27,14 +29,24 @@ router.route("/login")
 
 //gets accountjs and is implemented through the accountController
 router.route("/account/:id")
-    .get(verifyToken, accountController.showAccDetails);
+    .get(apiCheck, accountController.showAccDetails)
+    .delete(apiCheck,accountController.deleteAccDetails);
 
 //gets accountValidation and is implemented through the accountValidationController
 router.route("/accountvalidation")
-    .post(verifyToken, accountValidationController.accountValidationRequest)
+    .post(apiCheck, accountValidationController.accountValidationRequest)
 
+//gets charge and is implemented through the chargeController
 router.route("/charge")
-    .post(verifyToken, chargeController.getCharge)
+    .post(verifyToken, paymentController.getCharge)
+
+
+router.route("/payment")
+    .post(paymentController.createPaymentCard)
+
+router.route("/refund")
+    .post(verifyToken, paymentController.getRefund)
+
 
 module.exports = router;
 
@@ -42,9 +54,10 @@ module.exports = router;
 function verifyToken(req) {
     return new Promise(
         (resolve, reject) => {
-            let token = req.session.token || req.headers['x-access-token'];
+            let token = req.headers['x-access-token'];
+
             if (token) {
-                jwt.verify(token, "epicHRauth", function (err, decoded) {
+                jwt.verify(token, "blackJackUserToken", function (err, decoded) {
                     if (err) {
                         reject(err);
                     } else {
@@ -61,3 +74,26 @@ function verifyToken(req) {
         }
     )
 }
+/**
+ * This function verifies a valid token is provided on each route
+ * @param req
+ * @param res
+ * @param next
+ */
+function apiCheck(req, res, next) {
+    console.log('Api Check');
+
+    verifyToken(req)
+        .then(() => {
+            console.log("it works");
+            next();
+        })
+        .catch(err => {
+            console.log(err);
+            return res.status(401).send({ success: false, message: err.message });
+        });
+
+
+
+}
+
