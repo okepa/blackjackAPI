@@ -28,12 +28,14 @@ router.route("/login")
 
 //gets accountjs and is implemented through the accountController
 router.route("/account/:id")
-    .get(apiCheck, accountController.showAccDetails);
+    .get(apiCheck, accountController.showAccDetails)
+    .delete(apiCheck,accountController.deleteAccDetails);
 
 //gets accountValidation and is implemented through the accountValidationController
 router.route("/accountvalidation")
     .post(accountValidationController.accountValidationRequest)
 
+//gets charge and is implemented through the chargeController
 router.route("/charge")
     .post(paymentController.getCharge)
 
