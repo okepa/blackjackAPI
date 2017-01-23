@@ -21,7 +21,7 @@ router.route("/register")
 
 //gets invitejs and is implemented through the inviteController
 router.route("/invite")
-    .post(apiCheck, inviteController.sendInviteEmail);
+    .post(inviteController.sendInviteEmail);
 
 //gets loginjs and is implemented through the loginController
 router.route("/login")
