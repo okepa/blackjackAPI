@@ -21,7 +21,7 @@ router.route("/register")
 
 //gets invitejs and is implemented through the inviteController
 router.route("/invite")
-    .post(tokenAuthenicationController.apiCheck, inviteController.sendInviteEmail);
+    .post(inviteController.sendInviteEmail);
 
 //gets loginjs and is implemented through the loginController
 router.route("/login")
@@ -29,8 +29,8 @@ router.route("/login")
 
 //gets accountjs and is implemented through the accountController
 router.route("/account/:id")
-    .get(tokenAuthenicationController.apiCheck, accountController.showAccDetails)
-    .delete(tokenAuthenicationController.apiCheck, accountController.deleteAccDetails);
+    .get(accountController.showAccDetails)
+    .delete(accountController.deleteAccDetails);
 
 //gets accountValidation and is implemented through the accountValidationController
 router.route("/accountvalidation")
@@ -38,15 +38,15 @@ router.route("/accountvalidation")
 
 //gets charge and is implemented through the chargeController
 router.route("/charge")
-    .post(tokenAuthenicationController.apiCheck, paymentController.getCharge)
+    .post(paymentController.getCharge)
 
 //gets payment and is implemented through the paymentController
 router.route("/payment")
-    .post(tokenAuthenicationController.apiCheck, paymentController.createPaymentCard)
+    .post(paymentController.createPaymentCard)
 
 //gets refund and is implemented through the tokenAuthenticationController
 router.route("/refund")
-    .post(tokenAuthenicationController.apiCheck, paymentController.getRefund)
+    .post(paymentController.getRefund)
 
 module.exports = router;
 
