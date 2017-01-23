@@ -1,7 +1,3 @@
-//delete - testing purposes
-// const jwt = require('jsonwebtoken');
-//In this file I need to connect 
-
 const AccountValidation = require('../lib/accountValidation');
 const User = require('../models/user');
 
