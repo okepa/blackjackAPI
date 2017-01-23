@@ -32,7 +32,7 @@ router.route("/account/:id")
 
 //gets accountValidation and is implemented through the accountValidationController
 router.route("/accountvalidation")
-    .post(apiCheck, accountValidationController.accountValidationRequest)
+    .post(accountValidationController.accountValidationRequest)
 
 router.route("/charge")
     .post(paymentController.getCharge)
