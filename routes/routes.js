@@ -41,7 +41,7 @@ router.route("/charge")
     .post(tokenAuthenicationController.apiCheck, paymentController.getCharge)
 
 router.route("/payment")
-    .post(apiCheck, paymentController.createPaymentCard)
+    .post(tokenAuthenicationController.apiCheck, paymentController.createPaymentCard)
 
 router.route("/refund")
     .post(tokenAuthenicationController.apiCheck, paymentController.getRefund)
