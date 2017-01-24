@@ -5,10 +5,11 @@ class PaymentController {
     static getCharge(req, res) {
         Payment.findAndRetrieveToken(req)
             .then((result) => {
-                console.log(result);
+                console.log("result before create charge: " + result);
                 Payment.createCharge(req, result)
             })
             .then((resolveArray) => {
+                console.log("resolveArray before add charge to database: " + result);
                 console.log(resolveArray);
                 Payment.addChargeToDatabase(resolveArray)
             })
