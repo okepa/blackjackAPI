@@ -17,7 +17,7 @@ class PaymentController {
                 res.status(201).send("Charge updated in the database");
             })
             .catch(err => {
-                res.status(400).send(err);
+                res.status(400).send(err.message);
             });
 
 
@@ -82,14 +82,14 @@ class PaymentController {
 
 
     static createPaymentCard(req, res) {
-    Payment.addPaymentCard(req)
-        .then(result => {
-            res.status(200).send("added payment card");
-        })
-        .catch(err => {
-            res.status(400).send(err);
-        });
-}
+        Payment.addPaymentCard(req)
+            .then(result => {
+                res.status(200).send("added payment card");
+            })
+            .catch(err => {
+                res.status(400).send(err);
+            });
+    }
 }
 
 module.exports = PaymentController;
