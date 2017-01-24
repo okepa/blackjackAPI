@@ -24,10 +24,10 @@ class AccountController {
                 //2. refund to strip account(res.balance)
                 Account.refundMoney(refundAccountDetails)
             })
-            // .then(() => {
-            //     //3. delete account
-            //     Account.removeAccDetails(req)
-            // })
+            .then(() => {
+                //3. delete account
+                Account.removeAccDetails(req)
+            })
             .then(() => {
                 res.status(200).send({
                     success: "Your Balance has been refund to your Account & your Membership/Account has been deleted"
