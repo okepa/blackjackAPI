@@ -17,7 +17,7 @@ class PaymentController {
                 res.status(201).send("Charge updated in the database");
             })
             .catch(err => {
-                res.status(401).send(err);
+                res.status(400).send(err);
             });
 
 
@@ -55,7 +55,7 @@ class PaymentController {
                 res.status(201).send("Refund has occurred");
             })
             .catch(err => {
-                res.status(401).send(err);
+                res.status(400).send(err);
             });
 
 
