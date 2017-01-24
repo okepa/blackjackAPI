@@ -2,37 +2,69 @@ const User = require("../models/user");
 const Payment = require("../lib/payment");
 
 class PaymentController {
+    // static getCharge(req, res) {
+    //     Payment.findAndRetrieveToken(req)
+    //         .then((result) => {
+    //             Payment.createCharge(req, result)
+    //                 .then((resolveArray) => {
+    //                     Payment.addChargeToDatabase(resolveArray)
+    //                         .then(() => {
+    //                             res.status(201).send("Charge updated in the database");
+    //                         })
+    //                         .catch(err => {
+    //                             res.status(401).send(err);
+    //                         });
+    //                 })
+    //         }
+    //         )
+    // }
+
     static getCharge(req, res) {
         Payment.findAndRetrieveToken(req)
             .then((result) => {
-                Payment.createCharge(req, result)
-                    .then((resolveArray) => {
-                        Payment.addChargeToDatabase(resolveArray)
+                //Payment.createCharge(req, result)
+                    //.then((resolveArray) => {
+                        Payment.addChargeToDatabase(req, result)
                             .then(() => {
                                 res.status(201).send("Charge updated in the database");
                             })
                             .catch(err => {
-                                //console.log("getCharge-failure");
-                                res.status(401).send(err.message);
+                                res.status(401).send(err);
                             });
-                    })
-            }
-            )
+                    //})
+            })
     }
 
-    static getRefund(req, res) {
+    // static getRefund(req, res) {
+    //     Payment.findAndRetrieveToken(req)
+    //         .then((result) => {
+    //             Payment.createRefund(req, result)
+    //                 .then((resolveArray2) => {
+    //                     Payment.addRefundToDatabase(resolveArray2)
+    //                         .then(() => {
+    //                             res.status(201).send("Refund has occurred");
+    //                         })
+    //                         .catch(err => {
+    //                             res.status(401).send(err);
+    //                         });
+    //                 })
+    //         })
+    // }
+
+        static getRefund(req, res) {
         Payment.findAndRetrieveToken(req)
-            .then((req, result) => {
-                Payment.createRefund(req, result)
-                    .then((resolveArray2) => {
-                        Payment.addRefundToDatabase(resolveArray2)
+            .then((result) => {
+                //Payment.createRefund(req, result)
+                  //  .then((resolveArray2) => {
+                        Payment.addRefundToDatabase(req, result)
                             .then(() => {
-                                res.status(201).send("Refund has occurred");
+                                console.log("Refund has occ");
+                                res.status(200).send("Refund has occurred");
                             })
                             .catch(err => {
-                                res.status(401).send(err.message);
+                                res.status(401).send(err);
                             });
-                    })
+                    //})
             })
     }
 
