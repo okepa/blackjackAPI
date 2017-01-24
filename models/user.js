@@ -73,12 +73,8 @@ let UserSchema = mongoose.Schema({
     },
     
     cardToken: {
-        type: String,
-        default: "notoken"
+        type: Object
     }
-    // card:{
-    //     type: String
-    // }
 });
 
 module.exports = mongoose.model("user", UserSchema);
