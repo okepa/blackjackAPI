@@ -5,7 +5,7 @@ class PaymentController {
     static getCharge(req, res) {
         Payment.findAndRetrieveToken(req)
             .then((result) => {
-                console.log("for second promise" + req.body);
+                console.log("for second promise" + req.body.id);
                 console.log("result before create charge: " + result);
                 Payment.createCharge(req, result)
             })
