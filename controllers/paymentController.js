@@ -6,13 +6,13 @@ class PaymentController {
         Payment.findAndRetrieveToken(req)
             .then((result) => {
                 Payment.createCharge(req, result)
-                    .then((req, resolveArray) => {
+                    .then((resolveArray) => {
                         Payment.addChargeToDatabase(resolveArray)
                             .then(() => {
                                 res.status(201).send("Charge updated in the database");
                             })
                             .catch(err => {
-                                console.log("getCharge-failure");
+                                //console.log("getCharge-failure");
                                 res.status(401).send(err.message);
                             });
                     })
