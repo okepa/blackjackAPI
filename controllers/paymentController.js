@@ -23,16 +23,18 @@ class PaymentController {
         Payment.findAndRetrieveToken(req)
             .then((result) => {
                 //Payment.createCharge(req, result)
-                    //.then((resolveArray) => {
-                        Payment.addChargeToDatabase(req, result)
-                            .then(() => {
-                                res.status(201).send("Charge updated in the database");
-                            })
-                            .catch(err => {
-                                res.status(401).send(err);
-                            });
-                    //})
-            })
+                //.then((resolveArray) => {
+                Payment.addChargeToDatabase(req, result)
+                     })
+                    .then( () => {
+                        console.log("charge updated");
+                        res.status(201).send({sucess: "Charge updated in the database"});
+                    })
+                    .catch(err => {
+                        res.status(401).send(err);
+                    });
+                //})
+        
     }
 
     // static getRefund(req, res) {
@@ -51,21 +53,24 @@ class PaymentController {
     //         })
     // }
 
-        static getRefund(req, res) {
+    static getRefund(req, res) {
         Payment.findAndRetrieveToken(req)
             .then((result) => {
                 //Payment.createRefund(req, result)
-                  //  .then((resolveArray2) => {
-                        Payment.addRefundToDatabase(req, result)
-                            .then(() => {
-                                console.log("Refund has occ");
-                                res.status(200).send("Refund has occurred");
-                            })
-                            .catch(err => {
-                                res.status(401).send(err);
-                            });
-                    //})
-            })
+                //  .then((resolveArray2) => {
+                Payment.addRefundToDatabase(req, result)
+                  })
+                    .then(() => {
+                        console.log("Refund has occ");
+                        res.status(200).send({
+                            success: "Refund has occured"
+                        })
+                    })
+                    .catch(err => {
+                        res.status(401).send(err);
+                    });
+                //})
+          
     }
 
     static createPaymentCard(req, res) {
