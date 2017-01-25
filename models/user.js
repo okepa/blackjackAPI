@@ -5,9 +5,15 @@ const moment = require("moment");
 let UserSchema = mongoose.Schema({
     fullName: {
         type: String,
-        required: true
-        // validate: nodemvd.$notEmpty({ msg: 'Please enter your full name.' })
+        required: true,
+        validate: {
+            validator: function (fullName) {
+                let re = /^[a-zA-Z\s]+$/;
+                return re.test(fullName)
+            }
+        }
     },
+
     email: {
         type: String,
         required: true,
@@ -20,6 +26,7 @@ let UserSchema = mongoose.Schema({
 
         }
     },
+
     username: {
         type: String,
         required: true,
@@ -28,9 +35,10 @@ let UserSchema = mongoose.Schema({
 
     password: {
         type: String,
-        required: true,
-        unique: true
+        unique: true,
+        required: true
     },
+
     dob: {
         type: Date,
         require: true,
@@ -49,12 +57,23 @@ let UserSchema = mongoose.Schema({
             },
         }
     },
+
     token: {
         type: String,
     },
+
     access: {
         type: Boolean,
         default: false
+    },
+
+    balance: {
+        type: Number,
+        default: 0
+    },
+    
+    cardToken: {
+        type: Object
     }
 });
 
