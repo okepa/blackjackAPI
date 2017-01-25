@@ -71,8 +71,12 @@ let UserSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    
+
     cardToken: {
+        type: Object
+    },
+
+    customer: {
         type: Object
     }
 });
