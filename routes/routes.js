@@ -15,7 +15,7 @@ router.route("/")
     .get(indexController.showIndex);
 
 //gets registerjs and is implemented through the RegisterController
-router.route("/registration")
+router.route("/register")
     .get(registerController.initUser)
     .post(registerController.makeUser);
 
