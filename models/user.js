@@ -29,8 +29,7 @@ let UserSchema = mongoose.Schema({
     password: {
         type: String,
         required: true,
-        
-
+        unique: true
     },
     dob: {
         type: Date,
@@ -45,7 +44,6 @@ let UserSchema = mongoose.Schema({
                     return false;
                 } else {
                     console.log(years);
-
                     return true;
                 }
             },
