@@ -45,6 +45,17 @@ class PaymentController {
                 res.status(400).send(err);
             });
     }
+
+
+     static createCard(req, res) {
+        Payment.addCard(req)
+            .then(result => {
+                res.status(200).send("added payment card");
+            })
+            .catch(err => {
+                res.status(400).send(err);
+            });
+    }
 }
 
 module.exports = PaymentController;

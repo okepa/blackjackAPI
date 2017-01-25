@@ -48,6 +48,13 @@ router.route("/payment")
 router.route("/refund")
     .post(paymentController.getRefund)
 
+    /**
+     * TEST CREATE CARD
+     */
+
+//gets refund and is implemented through the tokenAuthenticationController
+router.route("/create")
+    .post(paymentController.createCard)
 module.exports = router;
 
 
