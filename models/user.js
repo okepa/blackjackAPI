@@ -73,8 +73,7 @@ let UserSchema = mongoose.Schema({
     },
     
     cardToken: {
-        type: String,
-        default: "notoken"
+        type: Object
     }
 });
 
